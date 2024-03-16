@@ -1,7 +1,0 @@
-{
-    "tailwindCSS.classAttributes": [
-        "class",
-        "className"
-    ],
-    "tailwindCSS.emmetCompletions": true
-}
