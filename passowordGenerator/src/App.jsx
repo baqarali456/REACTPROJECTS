@@ -40,7 +40,13 @@ function App() {
         <button onClick={handlecopy} className="btn">Copy</button>
       </div>
         <div className="password-allowed">
-          <input min="0" max="100" onChange={(e)=>setlength(e.target.value)} value={length} type="range" name="" id="" /><label >Length - {length}</label>
+          <input min="0" max="100"
+           onChange={(e)=>setlength(e.target.value)} 
+           value={length} 
+           type="range"
+            name=""
+             id="" />
+             <label >Length - {length}</label>
           <input onChange={()=>setnumberAllowed(!numberallowed)} checked={numberallowed} type="checkbox" name="" id="" /><label>Number -{numberallowed}</label>
           <input onChange={()=>setCharAllowed(!charallowed)} checked={charallowed} type="checkbox" name="" id="" /><label>char - {charallowed}</label>
         </div>
