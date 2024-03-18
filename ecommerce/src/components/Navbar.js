@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Navbar({handleshowCart,cartIndex,handleHome}) {
+export default function Navbar({handleonChange,allcategories,handleshowCart,cartIndex,handleHome}) {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light">
@@ -12,14 +12,14 @@ export default function Navbar({handleshowCart,cartIndex,handleHome}) {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <button onClick={handleHome} className="nav-link active" aria-current="page" >Home</button>
+          <button onClick={handleHome} className=" border-0 nav-link active" aria-current="page" >Home</button>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/">Link</a>
+        {allcategories.map(category=>(
+          <li onClick={(e)=>handleonChange(e.target.textContent)} key={category} className="nav-item">
+          <button className="border-0 nav-link" >{category}</button>
         </li>
-        <li className="nav-item">
-          <a href='/' className="nav-link disabled">Disabled</a>
-        </li>
+        ))}
+        
       </ul>
       {/* <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

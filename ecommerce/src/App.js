@@ -8,19 +8,27 @@ import Filtering from './components/Filtering';
 import ecommerceJson from './Data';
 
 function App() {
+   const allcategories = [...new Set(ecommerceJson.map(ele=>ele.category))];
+   
    
 
   const [list,setList] = useState(ecommerceJson);
+
   const [showlist,setshowList] = useState(true);
+
   const [showcart,setshowCart] = useState(false);
+
   let [cart,setCart] = useState([]);
+
   let [cartIndex,setcartIndex] = useState(0);
+
   let [prices,setPrices] = useState(0);
+
   const [pricerange,setpricerange] = useState(150000);
   
   
   const generatePricerange = useCallback(()=>{
-    let newlist = ecommerceJson.filter(ele=>Number(ele.price.split(',').join('')) <= pricerange);
+    let newlist = [...ecommerceJson].filter(ele=>Number(ele.price.split(',').join('')) <= pricerange);
       setList(newlist);
   },[pricerange,setList]);
 
@@ -53,10 +61,15 @@ function App() {
     setCart(cart);
   }
 
+  function handleonChange(category){
+    let categoryData = ecommerceJson.filter(ele=>ele.category === category);
+    setList(categoryData)
+  }
+
    
   return (
     <>
-    <Navbar handleHome={()=>{setshowList(true);setshowCart(false)}} cartIndex={cartIndex} handleshowCart={()=>handleshowCart()}/>
+    <Navbar handleonChange={handleonChange} allcategories={allcategories} handleHome={(e)=>{setshowList(true);setshowCart(false);setList(ecommerceJson)}} cartIndex={cartIndex} handleshowCart={()=>handleshowCart()}/>
 
     <Filtering 
     handleonChange={(e)=>setpricerange(e)} 
