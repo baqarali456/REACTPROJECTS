@@ -72,7 +72,7 @@ function App() {
     <Navbar handleonChange={handleonChange} allcategories={allcategories} handleHome={(e)=>{setshowList(true);setshowCart(false);setList(ecommerceJson)}} cartIndex={cartIndex} handleshowCart={()=>handleshowCart()}/>
 
     <Filtering 
-    handleonChange={(e)=>setpricerange(e)} 
+    handlePriceChange={(e)=>setpricerange(e)} 
     pricerange={pricerange}/>
 
     <div className='container my-3 d-flex flex-row flex-wrap'>
