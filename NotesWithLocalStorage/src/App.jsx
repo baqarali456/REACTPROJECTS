@@ -26,7 +26,7 @@ function App() {
   }
 
   const toggleNotes = (text) =>{
-    setNotes(prevnote=>prevnote.map(note=>note.text === text ? {...note,completed:true}:note));
+    setNotes(prevnote=>prevnote.map(note=>note.text === text ? {...note,completed:!note.completed}:note));
   }
 
   const handleInput = (e) =>{
