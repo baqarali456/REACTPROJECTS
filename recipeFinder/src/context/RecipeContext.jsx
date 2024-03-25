@@ -3,8 +3,10 @@ import { createContext, useContext } from "react";
 export const RecipeContext = createContext({
   data:[],
   categories:[],
+  filter:[],
+  showfilter:false,
   handleSearch:(input)=>{},
-  handlefilter:()=>{},
+  handlefilter:(category)=>{},
 })
 
 export const RecipeContextProvider = RecipeContext.Provider;

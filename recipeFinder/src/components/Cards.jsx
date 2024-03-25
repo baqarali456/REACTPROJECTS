@@ -4,7 +4,8 @@ import { useRecipeContext } from "../context/RecipeContext"
 function Cards() {
     const {data} = useRecipeContext()
   return (
-    data.map(ele=>(
+    <>
+      {data.map(ele=>(
         <div key={ele.idCategory} className="card mx-2  my-2 s" style={{width: "18rem"}}>
   <img src={ele.strCategoryThumb} className="card-img-top" alt="..."/>
   <div className="card-body">
@@ -13,7 +14,9 @@ function Cards() {
     <button  className="btn btn-primary">AddTo Cart</button>
   </div>
 </div>
-    ))
+    ))}
+    </>
+    
   )
 }
 

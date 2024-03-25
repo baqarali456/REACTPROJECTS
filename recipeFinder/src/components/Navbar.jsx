@@ -8,13 +8,12 @@ function Navbar() {
 
     const handleSearchonClick = (e) =>{
         e.preventDefault();
+        if(!input) return;
         handleSearch(input) 
     }
 
     const handlefilterbyCategory = (category) =>{
     handlefilter(category)
-    
-    
     }
 
   return (
@@ -35,7 +34,7 @@ function Navbar() {
           </a>
           <ul className="dropdown-menu">
             {categories.map(ele=>(
-                <li onClick={()=>handlefilterbyCategory(ele)} key={ele}><a className="dropdown-item">{ele}</a></li>
+                <li key={ele}  onClick={()=>handlefilterbyCategory(ele)} ><a className="dropdown-item">{ele}</a></li>
             ))}
           </ul>
         </li>

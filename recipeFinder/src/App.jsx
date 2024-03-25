@@ -5,38 +5,36 @@ import Navbar from './components/Navbar'
 import { RecipeContextProvider } from './context/RecipeContext';
 
 function App() {
-  const [data,setData] = useState([]);
-  const [categories,setcategories] = useState([])
-  let allcategories = data.map(ele=>ele.strCategory);
+  const [data,setData] = useState([])
+  const [categoriesData,setCategoriesData] = useState([])
+  const [categories,setCategories] = useState([])
+  console.log(categoriesData)
+  
+  
 
   
-  
- 
-  
-  const handleSearch = (input) =>{
-    if(input){
-      setData(prev=>prev.filter(ele=>ele.strCategory === input))
-    }
+
+  const handleSearch = (input) =>{  
+      setData(categoriesData.filter(ele=>ele.strCategory === input))
     }
 
     const handlefilter = (category) =>{
-      let newData = [...data].filter(ele=>ele.strCategory === category)
-      setData(newData)
-      
+      setData(categoriesData.filter(ele=>ele.strCategory === category))
     }
-   
-    
-    
+    const showData = async() =>{
+     let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    let data = await response.json()
+    setData(data.categories);
+    setCategoriesData(data.categories);
+     setCategories(categoriesData.map(ele=>ele.strCategory))
+    }
+
     
 
   useEffect(()=>{
-    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-    .then(res=>res.json())
-    .then(data=>setData(data.categories));
-    
-    setcategories(allcategories)
-   
+    showData()
   },[]);
+
 
   
 
@@ -53,4 +51,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
