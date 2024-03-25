@@ -7,6 +7,7 @@ export const RecipeContext = createContext({
   showfilter:false,
   handleSearch:(input)=>{},
   handlefilter:(category)=>{},
+  handleshowHome:()=>{},
 })
 
 export const RecipeContextProvider = RecipeContext.Provider;

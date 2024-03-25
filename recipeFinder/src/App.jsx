@@ -25,19 +25,18 @@ function App() {
      setCategories(categoriesData.map(ele=>ele.strCategory))
     }
 
+    const handleshowHome = () => {
+      showData()
+    }
+
     
 
   useEffect(()=>{
     showData()
   },[]);
 
-
-  
-
-  
-
   return (
-    <RecipeContextProvider value={{data,handleSearch,categories,handlefilter}}>
+    <RecipeContextProvider value={{data,handleSearch,categories,handlefilter,handleshowHome}}>
     <Navbar/>
     <div className=" my-3 container d-flex flex-row flex-wrap  ">
       <Cards />
