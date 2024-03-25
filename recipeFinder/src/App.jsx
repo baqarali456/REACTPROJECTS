@@ -8,12 +8,7 @@ function App() {
   const [data,setData] = useState([])
   const [categoriesData,setCategoriesData] = useState([])
   const [categories,setCategories] = useState([])
-  console.log(categoriesData)
   
-  
-
-  
-
   const handleSearch = (input) =>{  
       setData(categoriesData.filter(ele=>ele.strCategory === input))
     }
@@ -21,6 +16,7 @@ function App() {
     const handlefilter = (category) =>{
       setData(categoriesData.filter(ele=>ele.strCategory === category))
     }
+
     const showData = async() =>{
      let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     let data = await response.json()
@@ -44,7 +40,6 @@ function App() {
     <RecipeContextProvider value={{data,handleSearch,categories,handlefilter}}>
     <Navbar/>
     <div className=" my-3 container d-flex flex-row flex-wrap  ">
-    
       <Cards />
     </div>
     </RecipeContextProvider>
