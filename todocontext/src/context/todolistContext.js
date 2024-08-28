@@ -12,7 +12,10 @@ export const TodoContext = createContext({
   handleDeleteTodos:()=>{},
   updateTodo:()=>{},
   todoIndex:0,
-  updateTodo:()=>{}
+  handleCheckChange:()=>{},
+  handleDeletedSelectedTodos:()=>{},
+  handleClearTodos:()=>{},
+
 })
 
 export const TodoContextProvider = TodoContext.Provider;

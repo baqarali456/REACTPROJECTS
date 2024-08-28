@@ -15,7 +15,7 @@ function App() {
   const [todoIndex,setTodoIndex ] = useState(0)
   
   const handleAddTodos = (datafield) => {
-    setTodos(prev=>[...prev,{id:Math.round(Math.random() * 1000000 + 1 ),text:datafield}])
+    setTodos(prev=>[...prev,{id:Math.round(Math.random() * 1000000 + 1 ),text:datafield,selected:false}])
   }
 
   const handleDeleteTodos = (id) =>{
@@ -27,8 +27,7 @@ function App() {
   }
 
   const updateTodo = () =>{
-      todos.splice(todoIndex,1,{...todos[todoIndex],text:input})
-      setTodos(todos);
+      setTodos(prev=>prev.map((item,i)=>i === todoIndex ? {...item,text:input}:item))
   }
 
 
@@ -44,26 +43,41 @@ function App() {
    setEdit(value)
   }
 
+
+  const handleCheckChange = (e,id) =>{
+  
+    setTodos(prev=>prev.map(product=>product.id === id ? {...product,selected:!e} : product))
+
+  }
+
+  const handleDeletedSelectedTodos = () =>{
+    setTodos(prev=>prev.filter(todo=>!todo.selected))
+  }
+
+  const handleClearTodos = () =>{
+    setTodos([]);
+  }
+
+   useEffect(()=>{
+    const localtodos = JSON.parse(localStorage.getItem("todos"))
+       if(localtodos && localtodos.length){
+        setTodos(localtodos)
+       }
+       
+   },[])
+  
   useEffect(()=>{
+   
     localStorage.setItem("todos",JSON.stringify(todos))
-    console.log("data save in local Storage")
+   
     
   },[todos])
   
-  useEffect(()=>{
-    if(todos && todos.length){
-      const todos = JSON.parse(
-        localStorage.getItem("todos")
-      )
-      console.log("get data from local Storage",todos)
-      
-      setTodos(todos)
-   }
-  },[])
+ 
 
   return (
-    <TodoContextProvider value={{todos,handleAddTodos,handleDeleteTodos,handleinput,input,edit,handleEdit,todoIndex,updateTodo}}>
-      <div className=' bg-blue-600 flex flex-col justify-center items-center h-screen '>
+    <TodoContextProvider value={{todos,handleAddTodos,handleDeleteTodos,handleinput,input,edit,handleEdit,todoIndex,updateTodo,handleCheckChange,handleDeletedSelectedTodos,handleClearTodos}}>
+      <div className=' bg-blue-600 flex flex-col justify-center items-center h-screen w-screen '>
 
     
 <div className='flex flex-row  items-center justify-center '>
